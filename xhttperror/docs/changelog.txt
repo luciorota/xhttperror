@@ -6,10 +6,8 @@ Key:
 ! Bug fix.
 o General comment.
 
-version 1.01 (Released: 2014/11/26)
+version 1.01 (Released: 2014/10/24)
 ===================================
-+ delete multiple reports.
-o Use native XoopsRequest (mamba)
 o Upgraded to Xoops 2.5.7 coding standard.
 o Refactory all language definitions
 ! store wrong requested uri in reports (REDIRECT_URL, REDIRECT_QUERY_STRING)
