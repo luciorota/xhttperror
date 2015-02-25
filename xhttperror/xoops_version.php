@@ -41,7 +41,7 @@ include_once XOOPS_ROOT_PATH . '/modules/' . $modversion['dirname'] . '/include/
 
 // About
 $modversion['module_status']        = 'Beta';
-$modversion['release_date']         = '2015/02/03'; // YYYY/mm/dd
+$modversion['release_date']         = '2015/02/25'; // YYYY/mm/dd
 $modversion['module_website_url']   = 'http://www.xoops.org/';
 $modversion['module_website_name']  = 'XOOPS';
 $modversion['min_php']              = '5.3.7';
@@ -111,19 +111,21 @@ $modversion['hasMain'] = false;
 
 
 // Templates
-$i                                          = 0;
-++$i;
-$modversion['templates'][$i]['file']        = $modversion['dirname'] . '_index.tpl';
-$modversion['templates'][$i]['description'] = '';
+$modversion['templates'][] = array(
+    'file'        => $modversion['dirname'] . '_index.tpl',
+    'description' => 'Header info'
+);
+
 // Admin templates
-++$i;
-$modversion['templates'][$i]['file']        = $modversion['dirname'] . '_admin_errors_list.tpl';
-$modversion['templates'][$i]['type']        = 'admin';
-$modversion['templates'][$i]['description'] = '';
-++$i;
-$modversion['templates'][$i]['file']        = $modversion['dirname'] . '_admin_reports_list.tpl';
-$modversion['templates'][$i]['type']        = 'admin';
-$modversion['templates'][$i]['description'] = '';
+$modversion['templates'][] = array(
+    'file'        => $modversion['dirname'] . '_am_errors_list.tpl',
+    'type'        => 'admin',
+    'description' => ''
+);$modversion['templates'][] = array(
+    'file'        => $modversion['dirname'] . '_am_reports_list.tpl',
+    'type'        => 'admin',
+    'description' => ''
+);
 
 
 

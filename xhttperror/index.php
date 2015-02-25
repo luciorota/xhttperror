@@ -74,10 +74,10 @@ if (!isset($_GET['error'])) {
             }
         }
     }
-    $criteria = new CriteriaCompo();
-    $criteria->add(new Criteria('error_statuscode', $_GET['error']));
-    $criteria->add(new Criteria('error_showme', true));
-    if ($errorObjs = $xhttperror->getHandler('error')->getObjects($criteria)) {
+    $errorCriteria = new CriteriaCompo();
+    $errorCriteria->add(new Criteria('error_statuscode', $_GET['error']));
+    $errorCriteria->add(new Criteria('error_showme', true));
+    if ($errorObjs = $xhttperror->getHandler('error')->getObjects($errorCriteria)) {
         $errorObj = $errorObjs[0];
         $id = $errorObj->getVar('error_id');
         $title = $myts->displayTarea($errorObj->getVar('error_title'));

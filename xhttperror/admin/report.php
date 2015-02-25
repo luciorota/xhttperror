@@ -35,12 +35,12 @@ switch($op) {
         $reportCount = $xhttperror->getHandler('report')->getCount();
         if($reportCount > 0) {
             $start = XoopsRequest::getInt('start', 0);
-            $criteria = new CriteriaCompo();
-            $criteria->setSort('report_date');
-            $criteria->setOrder('ASC');
-            $criteria->setStart($start);
-            $criteria->setLimit($xhttperror->getConfig('reports_perpage'));
-            $reports = $xhttperror->getHandler('report')->getObjects($criteria, true, false); // as array
+            $reportCriteria = new CriteriaCompo();
+            $reportCriteria->setSort('report_date');
+            $reportCriteria->setOrder('ASC');
+            $reportCriteria->setStart($start);
+            $reportCriteria->setLimit($xhttperror->getConfig('reports_perpage'));
+            $reports = $xhttperror->getHandler('report')->getObjects($reportCriteria, true, false); // as array
             foreach ($reports as $key => $report) {
                 $report['report_owner_uname'] = XoopsUserUtility::getUnameFromId($report['report_uid']);
                 $report['report_date_formatted'] = XoopsLocal::formatTimestamp($report['report_date'], 'l');
@@ -51,7 +51,7 @@ switch($op) {
             $pagenav = new XoopsPageNav($reportCount, $xhttperror->getConfig('reports_perpage'), $start, 'start');
             $GLOBALS['xoopsTpl']->assign('reports_pagenav', $pagenav->renderNav());
             //
-            $GLOBALS['xoopsTpl']->display("db:{$xhttperror->getModule()->dirname()}_admin_reports_list.tpl");
+            $GLOBALS['xoopsTpl']->display("db:{$xhttperror->getModule()->dirname()}_am_reports_list.tpl");
         } else {
             echo _CO_XHTTPERROR_WARNING_NOREPORTS;
         }

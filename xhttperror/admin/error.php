@@ -36,13 +36,13 @@ switch($op ) {
         //
         $errorCount = $xhttperror->getHandler('error')->getCount();
         if($errorCount > 0) {
-            $criteria = new CriteriaCompo();
-            $criteria->setSort('error_statuscode');
-            $criteria->setOrder('ASC');
-            $errors = $xhttperror->getHandler('error')->getObjects($criteria, true, false); // as array
+            $errorCriteria = new CriteriaCompo();
+            $errorCriteria->setSort('error_statuscode');
+            $errorCriteria->setOrder('ASC');
+            $errors = $xhttperror->getHandler('error')->getObjects($errorCriteria, true, false); // as array
             $GLOBALS['xoopsTpl']->assign('errors', $errors);
             $GLOBALS['xoopsTpl']->assign('token', $GLOBALS['xoopsSecurity']->getTokenHTML() );
-            $GLOBALS['xoopsTpl']->display("db:{$xhttperror->getModule()->dirname()}_admin_errors_list.tpl");
+            $GLOBALS['xoopsTpl']->display("db:{$xhttperror->getModule()->dirname()}_am_errors_list.tpl");
         } else {
             echo _CO_XHTTPERROR_WARNING_NOERRORS;
         }
@@ -81,9 +81,9 @@ switch($op ) {
         $errorObj = $xhttperror->getHandler('error')->get($error_id);
         // Check statuscode
         if (isset($_REQUEST['error_statuscode'])) {
-            $criteria = new CriteriaCompo();
-            $criteria->add(new Criteria('error_statuscode', $_REQUEST['error_statuscode']));
-            if ($xhttperror->getHandler('error')->getCount($criteria) > 0) {
+            $errorCriteria = new CriteriaCompo();
+            $errorCriteria->add(new Criteria('error_statuscode', $_REQUEST['error_statuscode']));
+            if ($xhttperror->getHandler('error')->getCount($errorCriteria) > 0) {
                 redirect_header($currentFile, 3, _AM_XHTTPERROR_STATUSCODE_EXISTS); // IN PROGRESS
             } else {
                 $errorObj->setVar('error_statuscode', $_REQUEST['error_statuscode']);
